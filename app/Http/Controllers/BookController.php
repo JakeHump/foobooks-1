@@ -20,7 +20,7 @@ class BookController extends Controller
 	* GET
     * /books/{title?}
 	*/
-    public function view($title = null) {
+    public function show($title = null) {
 
         # query the database for all books that match the title $title
 
