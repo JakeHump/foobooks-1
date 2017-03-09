@@ -3,8 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Rych\Random\Random;
 
 class PracticeController extends Controller {
+
+
+    /**
+    *
+    */
+    public function practice3() {
+
+        $random = new Random();
+
+        // Generate a 16-byte string of random raw data
+        $randomBytes = $random->getRandomBytes(16);
+        dump($randomBytes);
+
+        // Get a random integer between 1 and 100
+        $randomNumber = $random->getRandomInteger(1, 100);
+        dump($randomNumber);
+
+        // Get a random 8-character string using the
+        // character set A-Za-z0-9./
+        $randomString = $random->getRandomString(8);
+        dump($randomString);
+    }
+
+    /**
+	*
+	*/
+    public function practice2() {
+
+        dump(config('app'));
+
+    }
+
+
 
     /**
 	*
@@ -26,6 +60,8 @@ class PracticeController extends Controller {
     * http://foobooks.loc/practice/999 => Practice route [practice999] not defined
 	*/
     public function index($n) {
+
+
 
         $method = 'practice'.$n;
 
