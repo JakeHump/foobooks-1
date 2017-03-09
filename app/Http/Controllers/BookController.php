@@ -21,11 +21,8 @@ class BookController extends Controller
     * /books/{title?}
 	*/
     public function show($title = null) {
-
-        # query the database for all books that match the title $title
-
-        # return a view to show the book, with that book data
-
-        return 'You want to view the book '.$title;
+        return view('books.show')->with([
+            'title' => $title,
+        ]);
     }
 }
