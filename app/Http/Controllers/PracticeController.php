@@ -7,6 +7,19 @@ use Rych\Random\Random;
 
 class PracticeController extends Controller {
 
+    /**
+	* Example for Clayton
+	*/
+    public function practice5() {
+        echo $this->variableSetInController;
+    }
+    /**
+	*
+	*/
+    public function practice4() {
+        $random = new \Rych\Random\Random();
+        return $random->getRandomString(8);
+    }
 
     /**
     *
