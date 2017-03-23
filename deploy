@@ -19,7 +19,7 @@ function welcome {
 
     if [[ $status == *"nothing to commit, working directory clean"* ]]; then
         dump "Working directory clean on production, proceeding with deployment."
-        ssh root@138.197.115.70 "/var/www/html/foobooks/bash/deploy";
+        ssh root@138.197.115.70 "/var/www/html/foobooks/deploy";
 
     else
         dump "There are changes on your production server; aborting deployment;"
@@ -41,8 +41,9 @@ function doDeploy {
 #
 # Decide which function to invoke
 #
+dump "Running from: $(pwd)"
 if [[ $(pwd) == *"/var/www/html"* ]]; then
-    doDeploy
+    dump "do deploy"
 else
     welcome
 fi
