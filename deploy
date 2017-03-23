@@ -13,13 +13,14 @@ function dump {
 #
 #
 #
-function welcome {
-    dump "Running a git status on production ($sshLogin)"
-    status=$(ssh root@138.197.115.70 "cd /var/www/html/foobooks; git status")
+function doDeploy {
+    cd /var/www/html/foobooks;
+    status="git status"
 
     if [[ $status == *"nothing to commit, working directory clean"* ]]; then
         dump "Working directory clean on production, proceeding with deployment."
-        ssh root@138.197.115.70 "/var/www/html/foobooks/deploy";
+        git pull
+        composer install
 
     else
         dump "There are changes on your production server; aborting deployment;"
@@ -28,22 +29,11 @@ function welcome {
 }
 
 
-#
-#
-#
-function doDeploy {
-    cd /var/www/html/foobooks;
-    git pull
-    composer install
-}
 
-
-#
-# Decide which function to invoke
-#
-dump "Running from: $(pwd)"
+# Running this script on production, invoke doDeploy
 if [[ $(pwd) == *"/var/www/html"* ]]; then
-    dump "do deploy"
+    doDeploy
+# Running this script on local, invoke doDeploy via SSH
 else
-    welcome
+    ssh root@138.197.115.70 "/var/www/html/foobooks/deploy";
 fi
