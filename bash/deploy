@@ -1,0 +1,43 @@
+path='/var/www/html/foobooks'
+sshLogin=root@138.197.115.70
+
+#
+#
+#
+function dump {
+    echo -e "===> \033[1m"$1"\033[0m"
+}
+
+
+#
+#
+#
+function welcome {
+    dump "Running a git status on production ($sshLogin)"
+    status=$(ssh root@138.197.115.70 "cd /var/www/html/foobooks; git status")
+
+    if [[ $status == *"nothing to commit, working directory clean"* ]]; then
+        dump "Working directory clean on production, proceeding with deployment."
+        #ssh root@138.197.115.70 "/var/www/html/foobooks/deploy";
+
+    else
+        dump "There are changes on your production server; aborting deployment;"
+        dump "Commit/checkout those changes and then try again."
+    fi
+}
+
+
+#
+# This function is designed to work on production, so if invoked locally, it
+# needs to be invoked like this:
+# ssh root@138.197.115.70 "/var/www/html/foobooks/deploy";
+#
+function deploy {
+    cd /var/www/html/foobooks;
+    git pull
+    # composer install
+}
+
+
+
+welcome;
