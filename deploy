@@ -1,6 +1,7 @@
 path='/var/www/html/foobooks'
 sshLogin=root@138.197.115.70
 
+
 #
 #
 #
@@ -18,7 +19,7 @@ function welcome {
 
     if [[ $status == *"nothing to commit, working directory clean"* ]]; then
         dump "Working directory clean on production, proceeding with deployment."
-        #ssh root@138.197.115.70 "/var/www/html/foobooks/deploy";
+        ssh root@138.197.115.70 "/var/www/html/foobooks/bash/deploy";
 
     else
         dump "There are changes on your production server; aborting deployment;"
@@ -28,16 +29,20 @@ function welcome {
 
 
 #
-# This function is designed to work on production, so if invoked locally, it
-# needs to be invoked like this:
-# ssh root@138.197.115.70 "/var/www/html/foobooks/deploy";
 #
-function deploy {
+#
+function doDeploy {
     cd /var/www/html/foobooks;
     git pull
-    # composer install
+    composer install
 }
 
 
-
-welcome;
+#
+# Decide which function to invoke
+#
+if [[ $(pwd) == *"/var/www/html"* ]]; then
+    doDeploy
+else
+    welcome
+fi
