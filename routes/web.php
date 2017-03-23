@@ -5,6 +5,9 @@
 */
 Route::get('/books', 'BookController@index');
 
+Route::get('/books/new', 'BookController@createNewBook');
+Route::post('/books/new', 'BookController@storeNewBook');
+
 Route::get('/books/{title?}', 'BookController@show');
 
 Route::get('/search', 'BookController@search');

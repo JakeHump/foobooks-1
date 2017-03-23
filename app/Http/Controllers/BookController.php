@@ -83,4 +83,28 @@ class BookController extends Controller
         ]);
     }
 
+
+    /**
+    * GET
+    * /books/new
+    * Display the form to add a new book
+    */
+    public function createNewBook(Request $request) {
+        return view('books.new');
+    }
+
+
+    /**
+    * POST
+    * /books/new
+    * Process the form for adding a new book
+    */
+    public function storeNewBook(Request $request) {
+
+        $title = $request->input('title');
+
+        # Code will eventually go here to actually save this book to a database
+        return redirect('/books/'.$title);
+    }
+
 }
