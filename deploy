@@ -1,3 +1,9 @@
+# Refer the start of Week 8's lecture for installation/usage instructions
+#
+# Note: this file must have executable permissions in order to run:
+# chmod +x deploy
+
+
 #
 # CONFIGURATION
 #
