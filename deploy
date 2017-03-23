@@ -1,9 +1,15 @@
-path='/var/www/html/foobooks'
+#
+# CONFIGURATION
+#
+# Update to be the path to your application on DigitalOcean
+appPath='/var/www/html/foobooks'
+
+# Update to reflect how you SSH into your DigitalOcean server
 sshLogin=root@138.197.115.70
 
 
 #
-#
+# Function to output messages
 #
 function dump {
     echo -e "===> \033[1m"$1"\033[0m"
@@ -15,25 +21,29 @@ function dump {
 #
 function doDeploy {
 
-    status=$(cd /var/www/html/foobooks; git status)
+    # Do a git status
+    status=$(cd $appPath; git status)
 
+    # Only proceed with deployment if git status shows there are no changes
     if [[ $status == *"nothing to commit, working directory clean"* ]]; then
         dump "Working directory clean on production, proceeding with deployment."
         git pull
         composer install
-
+    # If there are changes, abort deployment
     else
-        dump "There are changes on your production server; aborting deployment;"
-        dump "Commit/checkout those changes and then try again."
+        dump "There are changes on your production server; aborting deployment."
+        dump "SSH into your production server to commit/checkout those changes and then try again."
     fi
 }
 
 
-
-# Running this script on production, invoke doDeploy
+#
+# Decide what to do when this script is run
+#
+# If running this script on production, invoke doDeploy
 if [[ $(pwd) == *"/var/www/html"* ]]; then
     doDeploy
-# Running this script on local, invoke doDeploy via SSH
+# If running this script on local, invoke doDeploy via SSH
 else
-    ssh root@138.197.115.70 "/var/www/html/foobooks/deploy";
+    ssh root@138.197.115.70 "cd $appPath; ./deploy";
 fi
