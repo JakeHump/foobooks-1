@@ -1,7 +1,8 @@
 # Refer the start of Week 8's lecture for installation/usage instructions
 #
-# Note: this file must have executable permissions in order to run:
-# chmod +x deploy
+# Notes:
+# This file must have executable permissions in order to run: chmod +x deploy
+# This file assumes you have a SSH key working for connections to your DigitalOcean server
 
 
 #
@@ -51,5 +52,5 @@ if [[ $(pwd) == *"/var/www/html"* ]]; then
     doDeploy
 # If running this script on local, invoke doDeploy via SSH
 else
-    ssh root@138.197.115.70 "cd $appPath; ./deploy";
+    ssh $sshLogin "cd $appPath; ./deploy";
 fi
