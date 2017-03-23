@@ -15,7 +15,7 @@ function dump {
 #
 function doDeploy {
 
-    status="cd /var/www/html/foobooks; git status"
+    status=$(cd /var/www/html/foobooks; git status)
 
     if [[ $status == *"nothing to commit, working directory clean"* ]]; then
         dump "Working directory clean on production, proceeding with deployment."
