@@ -94,6 +94,7 @@ class BookController extends Controller
     }
 
 
+
     /**
     * POST
     * /books/new
@@ -101,9 +102,20 @@ class BookController extends Controller
     */
     public function storeNewBook(Request $request) {
 
+        $this->validate($request, [
+            'title' => 'required|min:3',
+            'publishedYear' => 'required|numeric',
+        ]);
+
         $title = $request->input('title');
 
-        # Code will eventually go here to actually save this book to a database
+        #
+        #
+        # [...Code will eventually go here to actually save this book to a database...]
+        #
+        #
+
+        # Redirect the user to the page to view the book
         return redirect('/books/'.$title);
     }
 
