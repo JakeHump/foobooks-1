@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "205554fad5718a8c3d22ba41de52f206",
-    "content-hash": "8e768346f64960a14d891558d9c189f6",
+    "hash": "bbd215ddefbdcb8a044e82ed641a291c",
+    "content-hash": "813ff8ab760e61f974f26c1bb379a3c5",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -60,6 +60,48 @@
                 "webprofiler"
             ],
             "time": "2017-01-19 08:19:49"
+        },
+        {
+            "name": "davejamesmiller/laravel-aliases",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/davejamesmiller/laravel-aliases.git",
+                "reference": "169e3f33d314d8fb478762d8691ad4fe8009a1db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/davejamesmiller/laravel-aliases/zipball/169e3f33d314d8fb478762d8691ad4fe8009a1db",
+                "reference": "169e3f33d314d8fb478762d8691ad4fe8009a1db",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "DaveJamesMiller\\Aliases": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT License"
+            ],
+            "authors": [
+                {
+                    "name": "Dave James Miller",
+                    "email": "dave@davejamesmiller.com",
+                    "homepage": "http://davejamesmiller.com/"
+                }
+            ],
+            "description": "Adds an 'artisan aliases' command to Laravel that lists registered aliases and the classes they map to, including resolving facades.",
+            "homepage": "https://github.com/davejamesmiller/laravel-aliases",
+            "keywords": [
+                "laravel"
+            ],
+            "time": "2017-01-30 21:15:10"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3559,7 +3601,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "davejamesmiller/laravel-aliases": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

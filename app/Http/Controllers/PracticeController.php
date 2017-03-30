@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Rych\Random\Random;
+#use Rych\Random\Random; Added an alias for this in config/app.php so no longer need this
 
 class PracticeController extends Controller {
 
@@ -13,12 +13,24 @@ class PracticeController extends Controller {
     public function practice5() {
         echo $this->variableSetInController;
     }
+
+
     /**
-	*
+	* https://github.com/susanBuck/dwa15-spring2017-notes/blob/master/03_Laravel/15_Composer_Packages.md
 	*/
     public function practice4() {
-        $random = new \Rych\Random\Random();
+
+        # Method 1) No alias, no use statement
+        #$random = new \Rych\Random\Random();
+
+        # Method 2) Assuming `use Rych\Random\Random;` at the top
+        #$random = new Random();
+
+        # Method 3) When set as an alias in config/app.php
+        $random = new \Random();
+
         return $random->getRandomString(8);
+
     }
 
     /**
@@ -26,7 +38,7 @@ class PracticeController extends Controller {
     */
     public function practice3() {
 
-        $random = new Random();
+        $random = new \Random;
 
         // Generate a 16-byte string of random raw data
         $randomBytes = $random->getRandomBytes(16);
