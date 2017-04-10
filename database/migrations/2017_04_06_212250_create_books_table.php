@@ -27,7 +27,7 @@ class CreateBooksTable extends Migration
             $table->string('title');
             $table->string('author')->nullable();
             $table->integer('published');
-            $table->string('cover_url');
+            $table->string('cover');
             $table->string('purchase_link');
 
             # FYI: We're skipping the 'tags' field for now; more on that later.
