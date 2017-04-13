@@ -84,16 +84,24 @@ class PracticeController extends Controller {
     * http://foobooks.loc/practice/5 => Invokes practice5
     * http://foobooks.loc/practice/999 => Practice route [practice999] not defined
 	*/
-    public function index($n) {
+    public function index($n = null) {
 
+        # If no specific practice is specified, show index of all available methods
+        if(is_null($n)) {
+            foreach(get_class_methods($this) as $method) {
+                if(strstr($method, 'practice'))
+                    echo "<a href='".str_replace('practice','/practice/',$method)."'>" . $method . "</a><br>";
+            }
+        }
+        # Otherwise, load the requested method
+        else {
+            $method = 'practice'.$n;
 
-
-        $method = 'practice'.$n;
-
-        if(method_exists($this, $method))
-            return $this->$method();
-        else
-            dd("Practice route [{$n}] not defined");
+            if(method_exists($this, $method))
+                return $this->$method();
+            else
+                dd("Practice route [{$n}] not defined");
+        }
 
     }
 }
