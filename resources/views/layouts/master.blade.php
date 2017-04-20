@@ -17,10 +17,11 @@
 <body>
 
     <header>
+        <a href='/'>
         <img
         src='http://making-the-internet.s3.amazonaws.com/laravel-foobooks-logo@2x.png'
         style='width:300px'
-        alt='Foobooks Logo'>
+        alt='Foobooks Logo'></a>
     </header>
 
     <section>
