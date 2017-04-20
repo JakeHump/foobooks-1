@@ -9,6 +9,15 @@ use App\Book;
 
 class PracticeController extends Controller {
 
+
+    /**
+	*
+	*/
+    public function practice18() {
+
+        
+    }
+
     /**
     * Solution to practice task from Eloquent notes
     * Retrieve the last 5 books that were added to the books table.

@@ -28,3 +28,13 @@ input[type='checkbox'], input[type='radio'] {
 input[type='checkbox'] + label {
     display:inline;
 }
+
+.message {
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    text-align:center;
+    font-size:18px;
+    background-color:yellow;
+}
