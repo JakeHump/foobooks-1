@@ -18,14 +18,14 @@ Route::get('/books/edit/{id}', 'BookController@edit');
 # Post route to process the form to save edits to a book
 Route::post('/books/edit', 'BookController@saveEdits');
 
-# Get route to show an individual book
-Route::get('/books/{id?}', 'BookController@show');
-
 # Get route to confirm deletion of book
-Route::get('/books/{id}/delete', 'BookController@delete')->name('books.destroy');
+Route::get('/books/delete/{id}', 'BookController@confirmDeletion');
 
 # Delete route to actually destroy the book
-Route::delete('/books/{id}', 'BookController@destroy')->name('books.destroy');
+Route::delete('/books/delete', 'BookController@delete');
+
+# Get route to show an individual book
+Route::get('/books/{id?}', 'BookController@show');
 
 # Get route to a search page
 Route::get('/search', 'BookController@search');

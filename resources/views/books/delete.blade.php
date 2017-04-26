@@ -7,11 +7,13 @@
 @section('content')
 
     <h1>Confirm deletion</h1>
-    <form method='POST' action='/books/{{ $book->id }}'>
+    <form method='POST' action='/books/delete'>
 
         {{ method_field('DELETE') }}
 
         {{ csrf_field() }}
+
+        <input type='hidden' name='id' value='{{ $book->id }}'?>
 
         <h2>Are you sure you want to delete <em>{{ $book->title }}</em>?</h2>
 

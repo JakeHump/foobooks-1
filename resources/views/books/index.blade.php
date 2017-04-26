@@ -32,7 +32,7 @@
 
                 <a class='bookAction' href='/books/edit/{{ $book->id }}'><i class='fa fa-pencil'></i></a>
                 <a class='bookAction' href='/books/{{ $book->id }}'><i class='fa fa-eye'></i></a>
-                <a class='bookAction' href='/books/{{ $book->id }}/delete'><i class='fa fa-trash'></i></a>
+                <a class='bookAction' href='/books/delete/{{ $book->id }}'><i class='fa fa-trash'></i></a>
 
             </div>
         @endforeach

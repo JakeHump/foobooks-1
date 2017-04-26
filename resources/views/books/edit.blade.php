@@ -28,8 +28,8 @@
         <label for='purchase_link'>* Published Year</label>
         <input type='text' name='purchase_link' id='purchase_link' value='{{ old('purchase_link', $book->purchase_link) }}'>
 
-        <br>
-        <input class='btn btn-primary' type='submit' value='Save changes'>
+        <br><input class='btn btn-primary' type='submit' value='Save changes'><br><br>
+
     </form>
 
 

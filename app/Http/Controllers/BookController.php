@@ -31,14 +31,14 @@ class BookController extends Controller
 
     /**
 	* GET
-    * /books/{id?}
+    * /books/{id}
 	*/
     public function show($id) {
 
         $book = Book::find($id);
 
         if(!$book) {
-            Session::flash('message', 'Book not found.');
+            Session::flash('message', 'The book you requested could not be found.');
             return redirect('/');
         }
 
@@ -154,7 +154,7 @@ class BookController extends Controller
         $book = Book::find($id);
 
         if(is_null($book)) {
-            Session::flash('message', 'Book not found.');
+            Session::flash('message', 'The book you requested was not found.');
             return redirect('/books');
         }
 
@@ -188,7 +188,7 @@ class BookController extends Controller
         $book->purchase_link = $request->purchase_link;
         $book->save();
 
-        Session::flash('message', 'Your changes were saved');
+        Session::flash('message', 'Your changes to '.$book->title.' were saved.');
         return redirect('/books/edit/'.$request->id);
 
     }
@@ -198,25 +198,30 @@ class BookController extends Controller
 	* GET
     * Page to confirm deletion
 	*/
-    public function delete($id) {
+    public function confirmDeletion($id) {
 
         # Get the book they're attempting to delete
         $book = Book::find($id);
+
+        if(!$book) {
+            Session::flash('message', 'Book not found.');
+            return redirect('/books');
+        }
 
         return view('books.delete')->with('book', $book);
     }
 
 
     /**
-    * POST
+    * DELETE
     */
-    public function destroy($id)
-    {
+    public function delete(Request $request) {
+            
         # Get the book to be deleted
-        $book = Book::find($id);
+        $book = Book::find($request->id);
 
-        if(is_null($book)) {
-            Session::flash('message', 'Book not found.');
+        if(!$book) {
+            Session::flash('message', 'Deletion failed; book not found.');
             return redirect('/books');
         }
 
