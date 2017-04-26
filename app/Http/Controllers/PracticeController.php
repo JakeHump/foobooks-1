@@ -11,11 +11,10 @@ class PracticeController extends Controller {
 
 
     /**
-	*
+	* Lecture 12
 	*/
     public function practice18() {
-
-        
+        # The code from this example was moved to the BookController.php
     }
 
     /**

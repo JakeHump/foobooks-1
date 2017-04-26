@@ -12,7 +12,7 @@ Route::get('/books/edit/{id}', 'BookController@edit');
 Route::post('/books/edit', 'BookController@saveEdits');
 
 
-Route::get('/books/{title?}', 'BookController@show');
+Route::get('/books/{id?}', 'BookController@show');
 
 Route::get('/search', 'BookController@search');
 

@@ -6,7 +6,8 @@
 @endsection
 
 @section('content')
-    <h1>Edit book: {{ $book->title }}</h1>
+    <h1>Edit</h1>
+    <h2>{{ $book->title }}</h2>
 
     <form method='POST' action='/books/edit'>
         {{ csrf_field() }}

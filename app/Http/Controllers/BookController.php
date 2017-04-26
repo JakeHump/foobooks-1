@@ -31,11 +31,19 @@ class BookController extends Controller
 
     /**
 	* GET
-    * /books/{title?}
+    * /books/{id?}
 	*/
-    public function show($title = null) {
+    public function show($id) {
+
+        $book = Book::find($id);
+
+        if(!$book) {
+            Session::flash('message', 'Book not found.');
+            return redirect('/');
+        }
+
         return view('books.show')->with([
-            'title' => $title,
+            'book' => $book,
         ]);
     }
 
@@ -107,7 +115,6 @@ class BookController extends Controller
     }
 
 
-
     /**
     * POST
     * /books/new
@@ -136,9 +143,11 @@ class BookController extends Controller
         return redirect('/books');
     }
 
+
     /**
 	* GET
     * /books/edit/{id}
+    * Show form to edit a book
 	*/
     public function edit($id) {
 
@@ -159,6 +168,7 @@ class BookController extends Controller
     /**
 	* POST
     * /books/edit
+    * Process form to save edits to a book
 	*/
     public function saveEdits(Request $request) {
 
