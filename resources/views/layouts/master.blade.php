@@ -9,6 +9,7 @@
 
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
 	<link href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
     <link href="/css/foobooks.css" type='text/css' rel='stylesheet'>
 
     @stack('head')
@@ -30,6 +31,7 @@
         <nav>
             <ul>
                 <li><a href='/'>Home</a></li>
+                <li><a href='/search'>Search</a></li>
                 <li><a href='/books/new'>Add a book</a></li>
             </ul>
         </nav>

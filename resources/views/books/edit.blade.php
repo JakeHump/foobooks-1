@@ -12,7 +12,7 @@
     <form method='POST' action='/books/edit'>
         {{ csrf_field() }}
 
-        <small>* Required fields</small>
+        <p>* Required fields</p>
 
         <input type='hidden' name='id' value='{{$book->id}}'>
 
@@ -29,7 +29,7 @@
         <input type='text' name='purchase_link' id='purchase_link' value='{{ old('purchase_link', $book->purchase_link) }}'>
 
         <br>
-        <input type='submit' value='Save changes'>
+        <input class='btn btn-primary' type='submit' value='Save changes'>
     </form>
 
 

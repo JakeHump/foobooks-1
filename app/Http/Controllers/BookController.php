@@ -193,4 +193,38 @@ class BookController extends Controller
 
     }
 
+
+    /**
+	* GET
+    * Page to confirm deletion
+	*/
+    public function delete($id) {
+
+        # Get the book they're attempting to delete
+        $book = Book::find($id);
+
+        return view('books.delete')->with('book', $book);
+    }
+
+
+    /**
+    * POST
+    */
+    public function destroy($id)
+    {
+        # Get the book to be deleted
+        $book = Book::find($id);
+
+        if(is_null($book)) {
+            Session::flash('message', 'Book not found.');
+            return redirect('/books');
+        }
+
+        $book->delete();
+
+        # Finish
+        Session::flash('message', $book->title.' was deleted.');
+        return redirect('/books');
+    }
+
 }

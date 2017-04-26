@@ -30,9 +30,9 @@
 
                 <a href='/books/{{ $book->id }}'><h3>{{ $book->title }}</h3></a>
 
-                <a class='button' href='/books/edit/{{ $book->id }}'><i class='fa fa-pencil'></i> Edit</a>
-                <a class='button' href='/books/{{ $book->id }}'><i class='fa fa-eye'></i> View</a>
-                <a class='button' href='/books/{{ $book->id }}/delete'><i class='fa fa-trash'></i> Delete</a>
+                <a class='bookAction' href='/books/edit/{{ $book->id }}'><i class='fa fa-pencil'></i></a>
+                <a class='bookAction' href='/books/{{ $book->id }}'><i class='fa fa-eye'></i></a>
+                <a class='bookAction' href='/books/{{ $book->id }}/delete'><i class='fa fa-trash'></i></a>
 
             </div>
         @endforeach

@@ -3,17 +3,31 @@
 /**
 * Book related routes
 */
+# Get route to show an index listing of all books
 Route::get('/books', 'BookController@index');
 
+# Get route to show a form to create a new book
 Route::get('/books/new', 'BookController@createNewBook');
+
+# Post route to process the form to add a new book
 Route::post('/books/new', 'BookController@storeNewBook');
 
+# Get route to show a form to edit an existing book
 Route::get('/books/edit/{id}', 'BookController@edit');
+
+# Post route to process the form to save edits to a book
 Route::post('/books/edit', 'BookController@saveEdits');
 
-
+# Get route to show an individual book
 Route::get('/books/{id?}', 'BookController@show');
 
+# Get route to confirm deletion of book
+Route::get('/books/{id}/delete', 'BookController@delete')->name('books.destroy');
+
+# Delete route to actually destroy the book
+Route::delete('/books/{id}', 'BookController@destroy')->name('books.destroy');
+
+# Get route to a search page
 Route::get('/search', 'BookController@search');
 
 /**

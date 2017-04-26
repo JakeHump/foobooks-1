@@ -24,8 +24,8 @@
 
         <p><a href='{{$book->purchase_link}}'>Purchase this book...</a></p>
 
-        <a class='button' href='/books/edit/{{ $book->id }}'><i class='fa fa-pencil'></i> Edit</a>
-        <a class='button' href='/books/{{ $book->id }}/delete'><i class='fa fa-trash'></i> Delete</a>
+        <a class='bookAction' href='/books/edit/{{ $book->id }}'><i class='fa fa-pencil'></i></a>
+        <a class='bookAction' href='/books/{{ $book->id }}/delete'><i class='fa fa-trash'></i></a>
 
     </div>
 @endsection

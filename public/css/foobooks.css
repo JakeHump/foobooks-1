@@ -99,6 +99,14 @@ body {
     margin:auto;
 }
 
+section {
+    text-align:center;
+}
+
+p {
+    text-align:left;
+}
+
 @media (max-width: 800px) {
     body {
         width:100%;
@@ -120,6 +128,7 @@ header #logo {
     position:fixed;
     top:0;
     left:0;
+    padding:5px;
     text-align:center;
     font-size:18px;
     background-color:yellow;
@@ -166,12 +175,13 @@ a.active:link, a.active:visited, a.active:active, a.active:hover {
 Forms
 -----------------------------------------------------*/
 label, legend {
+
     display:block;
     margin-top:20px;
     margin-bottom:0;
 }
 
-input, textarea, select {
+input[type=text], textarea, select {
     display:block;
     width:100%;
     font-size:1.5rem;
@@ -193,11 +203,7 @@ label {
     font-size:12px;
     font-size:1.2rem;
     letter-spacing:.75px;
-    color:@gray;
     font-weight:bold;
     text-transform:uppercase;
-
-    &.error {
-        color:@red;
-    }
+    text-align:left;
 }

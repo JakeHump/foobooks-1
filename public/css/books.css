@@ -33,6 +33,7 @@ Books
     padding:10px;
     width:100%;
     margin-bottom:5px;
+    text-align:left;
 }
 
 .book h3 {
@@ -42,9 +43,21 @@ Books
     text-align:left;
 }
 
+a.bookAction:link {
+    padding:5px;
+    font-size:2.0rem;
+}
+
+a.bookAction:hover {
+    padding:5px;
+    color:#18bc9c; /* flatly teel */
+}
+
 .cover {
     float:left;
     width:100px;
+    height:137px;
+    background-color:#eee;
     border:1px solid black;
     margin-right:10px;
 }
