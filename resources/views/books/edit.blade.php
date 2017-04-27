@@ -25,8 +25,28 @@
         <label for='cover'>* URL to a cover image</label>
         <input type='text' name='cover' id='cover' value='{{ old('cover', $book->cover) }}'>
 
-        <label for='purchase_link'>* Published Year</label>
+        <label for='purchase_link'>* Purchase link</label>
         <input type='text' name='purchase_link' id='purchase_link' value='{{ old('purchase_link', $book->purchase_link) }}'>
+
+        <label for='author_id'>* Author:</label>
+        <select id='author_id' name='author_id'>
+            @foreach($authorsForDropdown as $author_id => $authorName)
+                <option value='{{ $author_id }}' {{ ($book->author_id == $author_id) ? 'SELECTED' : '' }}>
+                    {{ $authorName }}
+                </option>
+            @endforeach
+        </select>
+
+        @foreach($tagsForCheckboxes as $id => $name)
+            <input
+                type='checkbox'
+                value='{{ $id }}'
+                name='tags[]'
+                {{ (in_array($name, $tagsForThisBook)) ? 'CHECKED' : '' }}
+            >
+            {{ $name }} <br>
+        @endforeach
+
 
         <br><input class='btn btn-primary' type='submit' value='Save changes'><br><br>
 

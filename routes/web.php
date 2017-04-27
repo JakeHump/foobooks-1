@@ -21,8 +21,8 @@ Route::post('/books/edit', 'BookController@saveEdits');
 # Get route to confirm deletion of book
 Route::get('/books/delete/{id}', 'BookController@confirmDeletion');
 
-# Delete route to actually destroy the book
-Route::delete('/books/delete', 'BookController@delete');
+# Post route to actually destroy the book
+Route::post('/books/delete', 'BookController@delete');
 
 # Get route to show an individual book
 Route::get('/books/{id?}', 'BookController@show');
