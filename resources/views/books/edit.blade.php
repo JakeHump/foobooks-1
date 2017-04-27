@@ -5,6 +5,10 @@
     Edit book: {{ $book->title }}
 @endsection
 
+@push('head')
+    <link href='/css/edit.css' rel='stylesheet'>
+@endpush
+
 @section('content')
     <h1>Edit</h1>
     <h2>{{ $book->title }}</h2>
@@ -37,16 +41,19 @@
             @endforeach
         </select>
 
-        @foreach($tagsForCheckboxes as $id => $name)
-            <input
-                type='checkbox'
-                value='{{ $id }}'
-                name='tags[]'
-                {{ (in_array($name, $tagsForThisBook)) ? 'CHECKED' : '' }}
-            >
-            {{ $name }} <br>
-        @endforeach
-
+        <label>Tags</label>
+        <ul>
+            @foreach($tagsForCheckboxes as $id => $name)
+                <li><input
+                    type='checkbox'
+                    value='{{ $id }}'
+                    id='tag_{{$id}}'
+                    name='tags[]'
+                    {{ (in_array($name, $tagsForThisBook)) ? 'CHECKED' : '' }}
+                >&nbsp;
+                <label for='tag_{{$id}}'>{{ $name }}</label></li>
+            @endforeach
+        </ul>
 
         <br><input class='btn btn-primary' type='submit' value='Save changes'><br><br>
 
