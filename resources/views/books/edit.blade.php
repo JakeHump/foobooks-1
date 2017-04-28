@@ -23,7 +23,7 @@
         <label for='title'>* Title</label>
         <input type='text' name='title' id='title' value='{{ old('title', $book->title) }}'>
 
-        <label for='published'>* Published Year</label>
+        <label for='published'>* Published Year (YYYY)</label>
         <input type='text' name='published' id='published' value='{{ old('published', $book->published) }}'>
 
         <label for='cover'>* URL to a cover image</label>
@@ -47,11 +47,11 @@
                 <li><input
                     type='checkbox'
                     value='{{ $id }}'
-                    id='tag_{{$id}}'
+                    id='tag_{{ $id }}'
                     name='tags[]'
                     {{ (in_array($name, $tagsForThisBook)) ? 'CHECKED' : '' }}
                 >&nbsp;
-                <label for='tag_{{$id}}'>{{ $name }}</label></li>
+                <label for='tag_{{ $id }}'>{{ $name }}</label></li>
             @endforeach
         </ul>
 
