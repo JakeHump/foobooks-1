@@ -10,15 +10,17 @@
 
         {{ csrf_field() }}
 
+        {{-- Note: Prefilling fields for quick login during development. --}}
+
         <label for="email">E-Mail Address</label>
-        <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
+        <input id="email" type="email" name="email" value="{{ old('email','jill@harvard.edu') }}" required autofocus>
         @if($errors->has('email'))
             <div class="error">{{ $errors->first('email') }}</div>
         @endif
 
         <label for="password">Password</label>
-        <input id="password" type="password"name="password" required>
-        @if ($errors->has('password'))
+        <input id="password" type="password" value='helloworld' name="password" required>
+        @if($errors->has('password'))
             <div class="error"><strong>{{ $errors->first('email') }}</div>
         @endif
 
