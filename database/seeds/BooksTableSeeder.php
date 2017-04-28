@@ -51,6 +51,7 @@ class BooksTableSeeder extends Seeder
                 'published' => $book['published'],
                 'cover' => $book['cover'],
                 'purchase_link' => $book['purchase_link'],
+                'user_id' => 1, # <--- NEW LINE
             ]);
         }
     }

@@ -92,7 +92,7 @@ h3 {
 /*----------------------------------------------------
 Layout
 -----------------------------------------------------*/
-body {
+#content {
     padding:25px;
     width:70%;
     max-width:960px;
@@ -134,6 +134,15 @@ header #logo {
     background-color:yellow;
 }
 
+.error {
+    margin-top:10px;
+}
+
+.error ul {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
 
 /*----------------------------------------------------
 Nav bar
@@ -175,13 +184,12 @@ a.active:link, a.active:visited, a.active:active, a.active:hover {
 Forms
 -----------------------------------------------------*/
 label, legend {
-
     display:block;
     margin-top:20px;
     margin-bottom:0;
 }
 
-input[type=text], textarea, select {
+input[type=text], input[type=email], input[type=password], textarea, select {
     display:block;
     width:100%;
     font-size:1.5rem;
@@ -206,4 +214,10 @@ label {
     font-weight:bold;
     text-transform:uppercase;
     text-align:left;
+}
+
+
+#login, #register {
+    width:300px;
+    margin:auto;
 }

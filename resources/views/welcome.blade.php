@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
+@extends('layouts.master')
 
-	<title>Welcome to Foobooks</title>
-	<meta charset='utf-8'>
+@push('head')
+    <link href='/css/books.css' rel='stylesheet'>
+@endpush
 
+@section('title')
+    Foobooks
+@endsection
 
-</head>
-<body>
+@section('content')
 
-	<h1>Welcome to Foobooks</h1>
+	<h1>Welcome!</h1>
+    Welcome to Foobooks, a personal book organizer.
+    To get started <a href='/login'>login</a> or <a href='/register'>register</a>.
 
-</body>
-</html>
+@endsection

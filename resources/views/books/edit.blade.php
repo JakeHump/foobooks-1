@@ -6,7 +6,7 @@
 @endsection
 
 @push('head')
-    <link href='/css/edit.css' rel='stylesheet'>
+    <link href='/css/books.css' rel='stylesheet'>
 @endpush
 
 @section('content')
@@ -34,6 +34,7 @@
 
         <label for='author_id'>* Author:</label>
         <select id='author_id' name='author_id'>
+            <option value='0'>Choose</option>
             @foreach($authorsForDropdown as $author_id => $authorName)
                 <option value='{{ $author_id }}' {{ ($book->author_id == $author_id) ? 'SELECTED' : '' }}>
                     {{ $authorName }}
@@ -42,7 +43,7 @@
         </select>
 
         <label>Tags</label>
-        <ul>
+        <ul id='tags'>
             @foreach($tagsForCheckboxes as $id => $name)
                 <li><input
                     type='checkbox'
@@ -55,17 +56,13 @@
             @endforeach
         </ul>
 
+        {{-- Extracted error code to its own view file --}}
+        @include('errors')
+
         <br><input class='btn btn-primary' type='submit' value='Save changes'><br><br>
 
     </form>
 
 
-    @if(count($errors) > 0)
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
 
 @endsection

@@ -3,26 +3,29 @@
 /**
 * Book related routes
 */
-# Get route to show an index listing of all books
-Route::get('/books', 'BookController@index');
+# The following routes require authorization
+Route::group(['middleware' => 'auth'], function () {
 
-# Get route to show a form to create a new book
-Route::get('/books/new', 'BookController@createNewBook');
+    Route::get('/books', 'BookController@index');
 
-# Post route to process the form to add a new book
-Route::post('/books/new', 'BookController@storeNewBook');
+    # Get route to show a form to create a new book
+    Route::get('/books/new', 'BookController@createNewBook');
 
-# Get route to show a form to edit an existing book
-Route::get('/books/edit/{id}', 'BookController@edit');
+    # Post route to process the form to add a new book
+    Route::post('/books/new', 'BookController@storeNewBook');
 
-# Post route to process the form to save edits to a book
-Route::post('/books/edit', 'BookController@saveEdits');
+    # Get route to show a form to edit an existing book
+    Route::get('/books/edit/{id}', 'BookController@edit');
 
-# Get route to confirm deletion of book
-Route::get('/books/delete/{id}', 'BookController@confirmDeletion');
+    # Post route to process the form to save edits to a book
+    Route::post('/books/edit', 'BookController@saveEdits');
 
-# Post route to actually destroy the book
-Route::post('/books/delete', 'BookController@delete');
+    # Get route to confirm deletion of book
+    Route::get('/books/delete/{id}', 'BookController@confirmDeletion');
+
+    # Post route to actually destroy the book
+    Route::post('/books/delete', 'BookController@delete');
+});
 
 # Get route to show an individual book
 Route::get('/books/{id?}', 'BookController@show');
@@ -46,12 +49,28 @@ Route::any('/practice/{n?}', 'PracticeController@index');
 
 
 /**
+* Auth related routes
+*/
+Auth::routes();
+
+Route::get('/home', 'BookController@index');
+
+Route::get('/logout', function() {
+    Auth::logout();
+    dump("You've been logged out");
+});
+
+
+/**
 * Main homepage visitors see when they visit just /
 */
-Route::get('/', 'BookController@index');
+Route::get('/', 'WelcomeController');
 
 
-//
+
+/*----------------------------------------------------
+Testing/Debugging routes below here
+-----------------------------------------------------*/
 // Route::get('/debug', function() {
 //
 // 	echo '<pre>';
@@ -100,3 +119,17 @@ if(App::environment('local')) {
     });
 
 };
+
+
+Route::get('/show-login-status', function() {
+
+    # You may access the authenticated user via the Auth facade
+    $user = Auth::user();
+
+    if($user)
+        dump('You are logged in.', $user->toArray());
+    else
+        dump('You are not logged in.');
+
+    return;
+});

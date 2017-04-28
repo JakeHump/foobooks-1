@@ -15,13 +15,30 @@ class BookController extends Controller
     * GET
     * /books
     */
-    public function index() {
+    public function index(Request $request) {
 
-        $books = Book::orderBy('title')->get(); # Query DB
+        $user = $request->user();
 
-        $newBooks = Book::orderBy('created_at', 'descending')->limit(3)->get(); # Query DB
+        # Note: We're getting the user from the request, but you can also get it like this:
+        //$user = Auth::user();
 
-        #$newBooks = $books->sortByDesc('created_at')->take(3); # Query existing Collection
+        if($user) {
+            # Approach 1)
+            //$books = Book::where('user_id', '=', $user->id)->orderBy('title')->get();
+
+            # Approach 2) Take advantage of Model relationships
+            $books = $user->books()->orderBy('title')->get();
+
+            # Get 3 most recently added books
+            #$newBooks = Book::orderBy('created_at', 'descending')->limit(3)->get(); # Query DB
+            $newBooks = $books->sortByDesc('created_at')->take(3); # Query existing Collection
+
+        }
+        else {
+            $books = [];
+            $newBooks = [];
+        }
+
 
         return view('books.index')->with([
             'books' => $books,
@@ -116,8 +133,11 @@ class BookController extends Controller
 
         $authorsForDropdown = Author::getAuthorsForDropdown();
 
+        $tagsForCheckboxes = Tag::getTagsForCheckboxes();
+
         return view('books.new')->with([
-            'authorsForDropdown' => $authorsForDropdown
+            'authorsForDropdown' => $authorsForDropdown,
+            'tagsForCheckboxes' => $tagsForCheckboxes
         ]);
     }
 
@@ -129,12 +149,18 @@ class BookController extends Controller
     */
     public function storeNewBook(Request $request) {
 
+        # Custom error message
+        $messages = [
+            'author_id.not_in' => 'Author not selected.',
+        ];
+
         $this->validate($request, [
             'title' => 'required|min:3',
             'published' => 'required|numeric',
             'cover' => 'required|url',
-            'purchase_link' => 'required|url'
-        ]);
+            'purchase_link' => 'required|url',
+            'author_id' => 'not_in:0',
+        ], $messages);
 
         # Add new book to database
         $book = new Book();
@@ -142,6 +168,16 @@ class BookController extends Controller
         $book->published = $request->published;
         $book->cover = $request->cover;
         $book->purchase_link = $request->purchase_link;
+        $book->author_id = $request->author_id;
+        $book->user_id = $request->user()->id;
+        $book->save();
+
+        # Now handle tags.
+        # Note how the book has to be created (save) first *before* tags can
+        # be added; this is because the tags need a book_id to associate with
+        # and we don't have a book_id until the book is created.
+        $tags = ($request->tags) ?: [];
+        $book->tags()->sync($tags);
         $book->save();
 
         Session::flash('message', 'The book '.$request->title.' was added.');
@@ -194,12 +230,18 @@ class BookController extends Controller
     */
     public function saveEdits(Request $request) {
 
+        # Custom error message
+        $messages = [
+            'author_id.not_in' => 'Author not selected.',
+        ];
+
         $this->validate($request, [
             'title' => 'required|min:3',
             'published' => 'required|numeric',
             'cover' => 'required|url',
-            'purchase_link' => 'required|url'
-        ]);
+            'purchase_link' => 'required|url',
+            'author_id' => 'not_in:0'
+        ], $messages);
 
         $book = Book::find($request->id);
 

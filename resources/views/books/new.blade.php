@@ -5,6 +5,11 @@
     New book
 @endsection
 
+@push('head')
+    <link href='/css/books.css' rel='stylesheet'>
+@endpush
+
+
 @section('content')
     <h1>Add a new book</h1>
 
@@ -25,17 +30,36 @@
         <label for='purchase_link'>* Published Year</label>
         <input type='text' name='purchase_link' id='purchase_link' value='{{ old('purchase_link', 'http://www.barnesandnoble.com/w/green-eggs-and-ham-dr-seuss/1100170349') }}'>
 
-        <br>
+        <label for='author_id'>* Author:</label>
+        <select id='author_id' name='author_id'>
+            <option value='0'>Choose</option>
+            @foreach($authorsForDropdown as $author_id => $authorName)
+                <option value='{{ $author_id }}'>
+                    {{ $authorName }}
+                </option>
+            @endforeach
+        </select>
+
+        <label>Tags</label>
+        <ul id='tags'>
+            @foreach($tagsForCheckboxes as $id => $name)
+                <li><input
+                    type='checkbox'
+                    value='{{ $id }}'
+                    id='tag_{{ $id }}'
+                    name='tags[]'
+                >&nbsp;
+                <label for='tag_{{ $id }}'>{{ $name }}</label></li>
+            @endforeach
+        </ul>
+
+        {{-- Extracted error code to its own view file --}}
+        @include('errors')
+
         <input class='btn btn-primary' type='submit' value='Add new book'>
     </form>
 
 
-    @if(count($errors) > 0)
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
+
 
 @endsection
