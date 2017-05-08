@@ -7,8 +7,21 @@ use Illuminate\Http\Request;
 
 use App\Book;
 use App\Author;
+use Mail;
 
 class PracticeController extends Controller {
+
+    /**
+	*
+	*/
+    public function practice24() {
+
+        Mail::raw('Test', function($message) {
+            $message->to('susanbuck@fas.harvard.edu');
+            $message->subject('Mailgun Testing');
+        });
+        dd('Mail sent!');
+    }
 
     /**
     * Lecture 13
